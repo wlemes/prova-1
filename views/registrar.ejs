@@ -1,0 +1,66 @@
+<%- include("_header") %>
+
+    <!-- simple registration -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Cadastro de Pessoa</h1>
+                <form id="register-form" action="/pesquisa" method="POST">
+                    <div class="form-group">
+                        <label for="partnome">Nome</label>
+                        <input type="text" class="form-control" id="partnome" name="partnome" placeholder=""
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="idade">Idade</label>
+                        <input type="number" class="form-control" id="idade" name="idade" placeholder="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sexo">Sexo</label>
+                        <input type="text" class="form-control" id="sexo" name="sexo" placeholder="M ou F" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="renda">Renda</label>
+                        <input type="number" class="form-control" id="renda" name="renda" placeholder="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="voto">Voto</label>
+                        <input type="text" class="form-control" id="voto" name="voto" placeholder="S ou N" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+                <hr>
+                <form id="get-form" action="/sexo" method="GET">
+                    <div class="form-group">
+                        <label for="sexo">Sexo</label>
+                        <input type="text" class="form-control" id="sexo" name="sexo" placeholder="M ou F"
+                            required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Consultar o percentual de aceitação/rejeição por sexo</button>
+                </form>
+                <br>
+                <form id="get-form" action="/faixaetaria" method="GET">
+                    <div class="form-group">
+                        <label for="idade_inicial">Idade Inicial</label>
+                        <input type="number" class="form-control" id="idade_inicial" name="idade_inicial"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="idade_final">Idade Final</label>
+                        <input type="number" class="form-control" id="idade_final" name="idade_final"
+                             required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Consultar o percentual de aceitação/rejeição por idade</button>
+                </form>
+                <br>
+                <form id="get-form" action="/renda" method="GET">
+                    <div class="form-group">
+                        <label for="renda_inicial">Renda Inicial</label>
+                        <input type="number" class="form-control" id="renda_inicial" name="renda_inicial" placeholder="" required>
+                        <label for="renda_final">Renda Final</label>
+                        <input type="number" class="form-control" id="renda_final" name="renda_final" placeholder="" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Consultar o percentual de aceitação/rejeição por renda</button>
+            </div>
+        </div>
+        <%- include("_footer") %>
