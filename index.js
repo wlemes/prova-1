@@ -56,8 +56,7 @@ app.post('/pesquisa', (req, res) => {
             return console.error(err.message);
         }
     });
-    alert('Data inserida.');
-    res.redirect('/');
+    res.render('sucesso');
 });
 
 app.get('/faixaetaria', (req, res) => {
@@ -88,13 +87,11 @@ app.get('/faixaetaria', (req, res) => {
             }
             rowsn = rowsn[0]['COUNT(*)'];
             if (rowsn == 0 && valida == false) {
-                alert('Não há dados para a faixa etária informada.');
-                res.redirect('/');
+                // alert('Não há dados para a faixa etária informada.');
+                res.render('_error');
             } else {
                 rowsnpercent = (rowsn / num) * 100;
-                //res.send({ rowsnpercent, rowspercent });
-                alert('Faixa etária: ' + idade_inicial + ' a ' + idade_final + '\n' + 'Número de pessoas: ' + num + '\n' + 'Número de votos S: ' + rows + ' (' + rowspercent + '%)\n' + 'Número de votos N: ' + rowsn + ' (' + rowsnpercent + '%)');
-                res.redirect('/');
+                res.render('faixaetaria', {rowsnpercent, rowspercent });
             }
         });
     });
@@ -129,15 +126,12 @@ app.get('/sexo', (req, res) => {
             }
             rowsf = rowsf[0]['COUNT(*)'];
             if (rowsf == 0 && valida == false) {
-                alert('Não há votos nem contra nem a favor nesse sexo');
-                res.redirect('/');
-
+                res.render('_error');
             }
             else {
                 rowspercentf = (rowsf / num) * 100;
-                // res.status(200).send({ rowspercent, rowspercentf });
-                alert(rowspercent + '% de votos do sexo ' + sexo + ' são sim e ' + rowspercentf + '% de votos do sexo ' + sexo + ' são não.');
-                res.redirect('/');
+                // alert(rowspercent + '% de votos do sexo ' + sexo + ' são sim e ' + rowspercentf + '% de votos do sexo ' + sexo + ' são não.');
+                res.render('sexo', { rowspercent, rowspercentf });
                 console.log(rowspercent);
             }
         });
@@ -173,14 +167,11 @@ app.get('/renda', (req, res) => {
             }
             voton = rows[0]['COUNT(*)'];
             if (voton == 0 && verifica == false) {
-                alert('Não há votos nem contra nem a favor nessa faixa de renda');
-                res.redirect('/');
+                res.render('_error');
             } else {
                 rowspercentn = (voton / num) * 100;
                 console.log(rowspercentn);
-                //res.send({ rowspercentn, rowspercent });
-                alert(rowspercent + '% de votos são sim e ' + rowspercentn + '% de votos são não.');
-                res.redirect('/');
+                res.render('renda', { rowspercent, rowspercentn });
             }
         });
     });
