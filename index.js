@@ -25,10 +25,11 @@ const sql_create = `CREATE TABLE IF NOT EXISTS Pesquisa (
     partnome varchar(10) primary key,
     idade integer,
     sexo varchar(1) not null,
+    profissao varchar(20) not null,
     renda real,
     voto varchar(1) not null);`;
 
-const sql_insert = `INSERT INTO Pesquisa (partnome, idade, sexo, renda, voto) VALUES ('Carlos', 30, 'M', 3500, 'S')`;
+const sql_insert = `INSERT INTO Pesquisa (partnome, idade, sexo, profissao, renda, voto) VALUES ('Carlos', 30, 'M', 'Professor', 3500, 'S')`;
 
 db.run(sql_create, err => {
     if (err) {
@@ -49,8 +50,8 @@ app.get("/", (req, res) => {
 });
 
 app.post('/pesquisa', (req, res) => {
-    const sql = `INSERT INTO Pesquisa (partnome, idade, sexo, renda, voto) VALUES (?, ?, ?, ?, ?)`;
-    const creation = [req.body.partnome, req.body.idade, req.body.sexo, req.body.renda, req.body.voto];
+    const sql = `INSERT INTO Pesquisa (partnome, idade, sexo, profissao, renda, voto) VALUES (?, ?, ?, ?, ?, ?)`;
+    const creation = [req.body.partnome, req.body.idade, req.body.sexo, req.body.profissao, req.body.renda, req.body.voto];
     db.run(sql, creation, err => {
         if (err) {
             return console.error(err.message);
